@@ -6,7 +6,7 @@ function showAlert() {
 setInterval(showAlert, 12000);
 
 
-const button = document.getElementById('myButton');
+const button = document.getElementById('Button');
         button.addEventListener('click', function() {
             button.textContent = 'Спасибо, что нажали!';
         });
