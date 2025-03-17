@@ -3,4 +3,4 @@ function showAlert() {
 }
 
 
-setInterval(showAlert, 5000);
+setInterval(showAlert, 30000);
