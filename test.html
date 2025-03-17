@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+div, button {
+    transition: 
+}
+
+div.leftState {
+    height: 100px;
+    width: 100px;
+    border: 2px solid red;
+}
+
+button.leftState {
+    transform: rotate(0deg);
+}
+
+div.rightState {
+    height: 100px;
+    width: 500px;
+    border: 2px solid red;
+    background: purple;
+    transition: 2s;
+}
+
+button.rightState {
+    transform: rotate(500deg);
+    transition: 2s;
+}
+</style>
+
+<div class="leftState" id="myDiv">My First JavaScript</div>
+<button class="leftState" id="myButton">Button</button>
+
+<script>
+let isExpanded = false; 
+
+myButton.onclick = function() {
+    if (isExpanded) {
+        myButton.className = "leftState";
+        myDiv.className = "leftState";
+    } else {
+        myButton.className = "rightState";
+        myDiv.className = "rightState";
+    }
+    isExpanded = !isExpanded; 
+}
+</script>
+
+</body>
+</html>
