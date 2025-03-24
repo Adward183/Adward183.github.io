@@ -28,24 +28,74 @@ button.rightState {
     transform: rotate(500deg);
     transition: 2s;
 }
+
+/*
+           #myButton {
+               margin: 20px;
+           }
+           #myDiv {
+               width: 100px;
+               height: 100px;
+               background-color: red;
+               position: absolute;
+               top: 200px;
+               left: 200px;
+           }
+           #movingElement {
+               width: 50px;
+               height: 50px;
+               background-color: blue;
+               position: absolute;
+           }
+
+*/
+
 </style>
 
 <div class="leftState" id="myDiv">My First JavaScript</div>
 <button class="leftState" id="myButton">Button</button>
 
 <script>
-let isExpanded = false; 
+ let isExpanded = false; 
+   const myButton = document.getElementById('myButton');
+   const myDiv = document.getElementById('myDiv');
+   const movingElement = document.getElementById('movingElement');
+   let position = 0;
 
-myButton.onclick = function() {
-    if (isExpanded) {
-        myButton.className = "leftState";
-        myDiv.className = "leftState";
-    } else {
-        myButton.className = "rightState";
-        myDiv.className = "rightState";
-    }
-    isExpanded = !isExpanded; 
-}
+   function moveElement() {
+       position += 2; 
+       movingElement.style.left = position + 'px';
+
+       if (position < window.innerWidth) {
+           requestAnimationFrame(moveElement); 
+       } else {
+           position = 0; 
+           moveElement();
+       }
+   }
+
+   myButton.onclick = function() {
+       if (isExpanded) {
+           myButton.className = "leftState";
+           myDiv.className = "leftState";
+       } else {
+           myButton.className = "rightState";
+           myDiv.className = "rightState";
+       }
+       isExpanded = !isExpanded; 
+   };
+
+   const observer = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+           if (entry.isIntersecting) {
+               console.log('Элементы столкнулись!');
+           }
+       });
+   });
+
+   observer.observe(myDiv);
+   observer.observe(movingElement);
+   moveElement();
 </script>
 
 </body>
