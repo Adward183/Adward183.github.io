@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        .container { position:relative;width:100vw;height:100vh;background:green;}
+        .mousePoint,.point{
+            pointer-events: none;
+            position:absolute;
+            height:100px;
+            width:100px;
+            background:red;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <p>Drag one or more files to this <i>drop zone</i>.</p>
+    <div id="myContainer" class="container">
+        <div  id="myPoint" class ="point">
+            <div id="mousePoint" class ="point">
+      
+            </div>
+        </div>
+   
+    </div>
+
+    
+
+
+
+<script>
+
+myContainer.onmousemove = function (e) {  
+
+     //   e.target.style.border="3px solid blue";
+      //  if(e.target.id == "myContainer") {
+         mousePoint.style.marginLeft=e.offsetX+"px"; mousePoint.style.marginTop=e.offsetY+'px';
+         // console.log(e.offsetX);
+    //    }
+       
+    }
+
+    let x=10;
+    setInterval(function() {
+        x++;
+      //  point.style.marginLeft=x+"px";
+
+    },1000)
+
+    let options = {
+    root: myPoint,
+    rootMargin: "0px",
+    threshold: 1.0,
+
+  };
+    const observer = new IntersectionObserver(intersect, options);
+
+    function intersect() {
+        console.log("dada");
+    }
+
+    observer.observe( mousePoint);
+
+</script>
+
+
+</body>
+</html>
