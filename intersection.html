@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container { width:100vw;height:100vh;}
+        .point{
+            height:100px;
+            width:100px;
+            background:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="myContainer" class="container">
+    <div id="mouseCursor" class ="point">
+    </div>
+
+    
+
+    <div id="point" class ="point">
+        </div>
+
+    </div>
+
+<script>
+
+myContainer.onmousemove = function (e) {  
+          console.log(e.offsetX);
+        //console.log(mouseCursor);
+        console.log(e.target);
+       // if( e.target.className! = )
+        mouseCursor.style.marginLeft=e.offsetX+"px"; mouseCursor.style.marginTop=e.offsetY+'px';
+    }
+
+    let x=10;
+    setInterval(function() {
+        x++;
+        point.style.marginLeft=x+"px";
+
+    },1000)
+</script>
+
+
+</body>
+</html>
