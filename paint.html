@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #myBody {
+            background: red;
+            width: 100vw;
+            height: 100vh;
+            border: 5px solid green
+        }
+
+        .point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    lastX:<span id="oldXSpanConsole">1</span>
+    <!--  new:<span id="newXSpanConsole">2</span><br>-->
+    lastY:<span id="oldYSpanConsole">3</span><br>
+    <!--  new:<span id="newYSpanConsole">4</span>-->
+    Направление<span id="directionSpanX"></span>
+    <span id="directionSpanY"></span>
+    <div id="myBody">
+    </div>
+    <script>
+
+        let lastX, lastY;
+        let direction;
+        //   let newX,newY;
+
+        function showValues() {
+            oldXSpanConsole.innerHTML = lastX;
+            // newXSpanConsole.innerHTML=newX;
+            oldYSpanConsole.innerHTML = lastY;
+            // newYSpanConsole.innerHTML=newY;
+            directionSpanX.innerHTML = directionX;
+            directionSpanY.innerHTML = directionY;
+
+        }
+       // setInterval(showValues, 100);
+        function isFirst() {
+            return (lastX == null && lastY == null);
+        }
+        function addPoint(x, y) {
+
+            let point = document.createElement('div');
+            point.className = "point";
+            point.style.marginLeft = x + 'px';
+            point.style.marginTop = y + 'px';
+            //point.innerHTML=x+','+y;
+            myBody.append(point);
+
+        }
+
+        myBody.onmousemove = function (e) {
+
+          //  console.log(e.target);
+
+            //первый раз был
+            if (isFirst() == true) {
+                console.log("first");
+               
+            }
+            else {
+                console.log(e.offsetX + '>' + lastX);
+                console.log(e.offsetY + '>' + lastY);
+                //если существующая левее клика
+                if (e.offsetX > lastX) {//право 
+                    directionX = "&rarr;";
+                }
+                else if(e.offsetX < lastX) { directionX = "&larr;"; }
+
+                if (e.offsetY > lastY) { //вверх
+                    directionY = "&darr;";
+                }
+                else if(e.offsetY < lastY) { directionY = "&uarr;"; }
+            }
+            lastX = e.offsetX; lastY = e.offsetY;
+            //if(oldX==null && newX==null) {   oldX= e.clientX;      }
+            //if(oldY==null && newY==null) {   oldY= e.clientY;      }
+            //console.log(e);
+            //SpanConsole.innerHTML=oldX+','+newX;
+            addPoint(e.offsetX, e.offsetY);
+            showValues();
+        }
+    </script>
+</body>
+
+</html>
