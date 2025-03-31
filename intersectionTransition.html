@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+ 
+    <title>Document</title>
+    <style>
+        .toggled {
+            border: 10px solid black;
+        }
+
+.left {
+
+margin-left:0px;
+
+}
+
+.right {
+margin-left:500px;
+}
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+/* написать в отдельном файле */
+        .outerPoint {
+            transition:1s;
+            border:1px solid black;
+     
+        }
+
+        .innerPoint {
+            transition:1s;
+          
+         
+        }
+
+        main {
+            width: 100vw;
+            height: 100vh;
+            background: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="myMain">
+        <button onclick="stop();">stop</button>
+        <button onclick="start();">start</button>
+        <div id="myContainer" class="container">
+        </div>
+    </main>
+    <script>
+  
+        let step;//undefined
+
+        var parentEl=  { 
+            color:"red",
+            width:"200px",
+            height:"100px",
+        };
+        var childEl =    { 
+            color:"blue ",
+            width:"50px",
+            height:"100px",
+        };
+        init(myContainer, parentEl, childEl);
+        function init(container, e1, e2) {
+    let outerElement = document.createElement('div');
+    outerElement.className = "outerPoint  ";
+    outerElement.style.height = e1.height; // ['width']
+    outerElement.style.width = e1.width; // ['width']
+    outerElement.style.background = e1.color;
+    let innerElement = document.createElement('div');
+    innerElement.className = "innerPoint ";
+    innerElement.style.width = e2.width; // ['width']
+    innerElement.style.height = e2.height; // ['width']
+    innerElement.style.background = e2.color;
+    outerElement.append(innerElement);
+    container.append(outerElement);
+
+
+         outerElement.onclick = function() {outerElement.classList.toggle("right"); }
+         innerElement.onclick = function() {innerElement.classList.toggle("right"); }
+
+
+         function addObserver(outerElement, innerElement) {
+        const observer = new IntersectionObserver(observeFunction, {
+            root: outerElement,
+            threshold: 0.1
+        });
+
+        function observeFunction(entries) {
+            console.log(entries[0]);
+            entries[0].target.classList.toggle('toggled');
+
+        }
+        observer.observe(innerElement);
+    }
+
+        }
+       </script>
+
+
+</body>
+
+</html>
