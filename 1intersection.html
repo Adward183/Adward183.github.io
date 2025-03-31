@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+ 
+    <title>Document</title>
+    <style>
+        .toggled {
+            border: 10px solid black;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+/* написать в отдельном файле */
+        .outerPoint {
+            border:1px solid black;
+            /*   pointer-events: none;
+            position: absolute;*/
+     
+        }
+
+        .innerPoint {
+            /* position: absolute;*/
+         
+        }
+
+        main {
+            width: 100vw;
+            height: 100vh;
+            background: purple;
+        }
+    </style>
+    <script src="library.js"></script>
+</head>
+
+<body>
+    <main id="myMain">
+        <button onclick="stop();">stop</button>
+        <button onclick="start();">start</button>
+        <div id="myContainer" class="container">
+
+
+
+        </div>
+    </main>
+    <script>
+  
+        let step;//undefined
+
+        var parentEl=  { 
+            color:"red",
+            width:"200px",
+            height:"100px",
+            speed:1,//мл-секунды
+            startPoint:100,
+            maxLeft:0,
+            maxRight:500,
+            step:1
+        };
+        var childEl =    { 
+            color:"green",
+            width:"50px",
+            height:"100px",
+            speed:10,//мл-секунды
+            startPoint:500,
+            maxLeft:0,
+            maxRight:500,
+            step:1
+        };
+
+
+        init(myContainer, parentEl, childEl);
+        init(myContainer, parentEl, childEl);
+        init(myContainer, parentEl, childEl);
+        init(myContainer,  { 
+            color:"black",
+            width:"50px",
+            height:"50px",
+            speed:10,//мл-секунды
+            startPoint:500,
+            maxLeft:0,
+            maxRight:500,
+            step:1
+        }, { 
+            color:"blue",
+            width:"40px",
+            height:"40px",
+            speed:10,//мл-секунды
+            startPoint:500,
+            maxLeft:0,
+            maxRight:500,
+            step:1
+        });
+        init(myContainer, parentEl, childEl);
+        init(myContainer, parentEl, childEl);
+  
+      /*   function stop() { console.log("clicked"); clearInterval(movingInterval); }
+
+       
+        function moveRight() {
+            x1+=direction1;
+            mouseCursor.style.marginLeft=x1+'px';
+        
+            if(x1>500) {  direction1=-1;}
+            if(x1<0)  { direction1=1;}
+        
+         }*/
+
+        async function func() {
+
+            await fetch('test.php').then(function (otvet) { console.log(otvet); });
+
+        }
+
+        //func();
+
+        /*
+        myContainer.onmousemove = function (e) {  
+            
+                mouseCursor.style.marginLeft=e.offsetX+"px"; mouseCursor.style.marginTop=e.offsetY+'px';
+            }*/
+
+
+   
+        //       observer.observe(point);
+    </script>
+
+
+</body>
+
+</html>
