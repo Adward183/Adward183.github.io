@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>Project</title>
+    
+<body> 
+
+
+
+
+
+
+<div id = "colorBox" class="box"></div>
+
+
+
+
+</body>
+
+
+
+ <style>
+    
+
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.box {
+    width: 250px;
+    height: 250px;
+    background-color: red;
+    transition: background-color 1s;
+}
+
+.box:hover {
+    background-color: blue;
+    width: 400px;
+    height: 400px;
+}
+
+
+
+    </style>
+
+</head>
+
+
+
+
+
+
+
+
+
+<script>
+
+const colorBox = document.getElementById('colorBox');
+function logCurrentColor() 
+{
+    const computedStyle = getComputedStyle(colorBox);
+    const currentBackgroundColor = computedStyle.backgroundColor;
+    console.log('Текущий цвет фона:', currentBackgroundColor);
+}
+
+
+setInterval(logCurrentColor, 150);
+
+
+
+</script>
+
+
+
+
+
+</html>
